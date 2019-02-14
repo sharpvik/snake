@@ -1,0 +1,37 @@
+* {
+    font-family: Consolas, monospace;
+}
+
+#game #field {
+    display: table;
+    margin: 15px auto;
+}
+
+#game #field .row {
+    display: table-row;
+    width: 100%;
+}
+
+#game #field .row .cell {
+    display: table-cell;
+    width: 20px;
+    height: 20px;
+    background-color: black;
+    border: 1px solid white;
+}
+
+#game #field .row .fruit {
+    background-color: red;
+}
+
+#game #field .row .snake-body {
+    background-color: #009900;
+}
+
+#game #field .row .snake-head {
+    background-color: #00ff00;
+}
+
+.hidden {
+    display: none;
+}
