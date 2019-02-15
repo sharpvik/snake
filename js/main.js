@@ -1,33 +1,18 @@
 // Snake CLASS
 function Snake(headX, headY) {
+    // VARIABLES
     var self = this;
     this.headX = headX;
     this.headY = headY;
     this.stateX = 1;
     this.stateY = 0;
+    this.lastDircetion = 39;
     this.direction = 39;
     this.body = [
         new Pair(self.headX - 2, self.headY),
         new Pair(self.headX - 1, self.headY),
         new Pair(self.headX, self.headY),
     ];
-}
-
-
-
-// SnakeGame CLASS
-function SnakeGame() {
-    // VARIABLES
-    var self = this;
-    this.name = 'Snake Game v1.0'
-    this.delay = 250;
-    this.gameOver = false;
-    this.gameON = false;
-    this.dimentions = [16, 16];
-    this.snake = new Snake( Math.floor(self.dimentions[0] / 2), Math.floor(self.dimentions[1] / 2) );
-    this.fruit;
-    this.score = 0;
-    
     this.ARROWS = {
         37 : [-1, 0],
         38 : [0, -1],
@@ -41,7 +26,37 @@ function SnakeGame() {
         40 : 38,
     };
     
+    
+    // METHODS
+    this.turn = function(lastKey) {
+        if (self.lastDirection != self.DIRECTIONS[lastKey]) {
+            console.log( 'New direction: ' + self.direction.toString() );
+            self.direction = lastKey;
+            self.stateX = self.ARROWS[self.direction][0];
+            self.stateY = self.ARROWS[self.direction][1];
+        } else console.log('Illegal turn blocked.');
+    }
+}
+
+
+
+// SnakeGame CLASS
+function SnakeGame() {
+    // VARIABLES
+        // CONSTANT
+    var self = this;
+    this.name = 'Snake Game v1.0';
+    this.author = 'Viktor Rozenko';
+    this.dimentions = [16, 16];
+    this.delay = 250;
+    this.snake;
+        // DYNAMIC
+    this.gameOver = true;
+    this.gameON;
+    this.fruit;
+    this.score;
     this.mainLoop;
+
     
     
     // METHODS
@@ -116,9 +131,22 @@ function SnakeGame() {
             status = document.getElementById('game-status'),
             score = document.getElementById('game-score');
         statusField.className = '';
-        name.innerHTML = self.name;
+        name.innerHTML = self.name + ' by ' + self.author;
         status.innerHTML = 'Game Over: ' + self.gameOver.toString();
         score.innerHTML = 'Score: ' + self.score.toString();
+    }
+    
+    
+    this.gameReset = function() {
+        // RESET SNAKE
+        self.snake = new Snake( Math.floor(self.dimentions[0] / 2), Math.floor(self.dimentions[1] / 2) );
+        
+        // RESET GAME
+        self.gameOver = false;
+        self.gameON = false;
+        self.fruit = null;
+        self.score = 0;
+        self.mainLoop = null;
     }
     
     
@@ -133,6 +161,9 @@ function SnakeGame() {
     
     
     this.gameLogic = function() {
+        // RECORD DIRECTION
+        self.snake.lastDirection = self.snake.direction;
+    
         // GENERATE NEW HEAD POSITION
         self.snake.headX += self.snake.stateX;
         self.snake.headY += self.snake.stateY;
@@ -146,13 +177,13 @@ function SnakeGame() {
             self.fruit = null;
             self.fruitPosition();
             self.score++;
-        } else self.snake.body.shift(0);
+        } else self.snake.body.shift();
         
         // COLLISION DETECTION
         var collision = (function() {
             var x = self.snake.headX,
                 y = self.snake.headY,
-                p = new Pair(x, y)
+                p = new Pair(x, y);
             var bodyCross = self.snake.body.indexPair(p);
             if ( bodyCross > -1 && bodyCross != self.snake.body.length - 1 || 
                  x < 0 || x > self.dimentions[0] - 1 || 
@@ -195,20 +226,15 @@ var snakeGame = new SnakeGame();
 // DETECTING KEYDOWN
 document.onkeydown = function(e) {
     key = e.keyCode;
-    if (snakeGame.ARROWS[key] != null) {
-        console.log("ARROW pressed.")
-        if (snakeGame.snake.direction != snakeGame.DIRECTIONS[key]) {
-            snakeGame.snake.stateX = snakeGame.ARROWS[key][0];
-            snakeGame.snake.stateY = snakeGame.ARROWS[key][1];
-            snakeGame.snake.direction = key;
-        }
-    }
     if (key == 32) {
         console.log("SPACE pressed.")
-        if (!snakeGame.gameOver) snakeGame.gameInit();
-    }
-    if (key == 27) {
+        if (snakeGame.gameOver) snakeGame.gameReset();
+        snakeGame.gameInit();
+    } else if (key == 27) {
         console.log("ESC pressed.")
         snakeGame.gameStop();
+    } else if (snakeGame.snake.ARROWS[key] != null) {
+        console.log("ARROW pressed.")
+        snakeGame.snake.turn(key);
     }
 }
