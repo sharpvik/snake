@@ -2,6 +2,10 @@
     font-family: Consolas, monospace;
 }
 
+h1, ol, ul {
+    margin-left: 10px;
+}
+
 #game #field {
     display: table;
     margin: 15px auto;

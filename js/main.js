@@ -49,8 +49,8 @@ function SnakeGame() {
     this.author = 'Viktor Rozenko';
     this.dimentions = [16, 16];
     this.delay = 250;
-    this.snake;
         // DYNAMIC
+    this.snake;
     this.gameOver = true;
     this.gameON;
     this.fruit;

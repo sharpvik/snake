@@ -39,11 +39,6 @@ function append(target, element) {
     target.innerHTML += element;
 }
 
-function getClassString(target) {
-    return target.className;
-}
-
 function addClass(target, newClass) {
-    var prev = getClassString(target);
-    target.className = prev + ' ' + newClass;
+    target.className += ' ' + newClass;
 }
