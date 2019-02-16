@@ -20,7 +20,7 @@ You'd possibly want to:
 
 ## Modification
 
-Cool thing about games like this is -- you can see what's happening under the hood and tweak the code yourself. Use this opportunity to learn something new (maybe). I tried to keep it clean and avoid spaghetti code: constructor and utility functions are separated from the *main.js* file so it's extremely easy to read the code and *understand* what it's doing. The *main.css* file is responsible for all the styles, therefore, changing the looks of the game is a piece of cake! The *index.html* file has a sample of the Field Structure that will ease your understanding of how the field is constructed.
+Cool thing about games like this is -- you can see what's happening under the hood and tweak the code yourself. Use this opportunity to learn something new (maybe). I tried to keep it clean and avoid spaghetti code: constructor and utility functions are separated from the *main.js* file so it's extremely easy to read the code and *understand* what it's doing. The *main.css* file is responsible for all the styles, therefore, changing the looks of the game is a piece of cake! The *index.html* file has a sample of the *field structure* that will ease your understanding of how the field is constructed.
 
 ## Contact
 
