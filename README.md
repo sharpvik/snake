@@ -1,6 +1,10 @@
 # Snake Game v1.0
 
-This is a very simplistic Snake Game made with HTML/CSS/JS and LOVE. I just wanted to make a game. Well, here it is. Do with it what you want -- there is no license attached. 
+This is a very simplistic Snake Game made with HTML/CSS/JS and LOVE. I just wanted to make a game. Well, here it is. Do with it what you want -- there is no license attached.
+
+## Contribute
+
+If you wish to improve the game -- by all means, do so -- fork the repo and change it! If you wish to merge back into this repo, please be my guest -- I will go through all push requests myself and hand-pick stuff that I like. 
 
 ## How to Use
 
