@@ -1,18 +1,3 @@
-// Pair CLASS
-function Pair(x, y) {
-    // VARIABLES
-    var self = this;
-    this.x = x;
-    this.y = y;
-    
-    // METHODS
-    this.equals = function(p) {
-        return p.x == self.x && p.y == self.y;
-    }
-}
-
-
-
 // PROTOTYPE ALTERATIONS
 Array.prototype.indexPair = function(p) {
     for (var i in this) {
@@ -23,7 +8,7 @@ Array.prototype.indexPair = function(p) {
 
 
 
-// FUNCTIONS
+// UTILITY FUNCTIONS
 function randint(min, max) {
     return Math.floor( (Math.random() * (max) ) + min);
 }
